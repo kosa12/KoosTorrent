@@ -7,9 +7,9 @@
 /home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/koostorrent.AssemblyInfoInputs.cache
 /home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/koostorrent.AssemblyInfo.cs
 /home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/koostorrent.csproj.CoreCompileInputs.cache
+/home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/koostorrent.sourcelink.json
 /home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/koostorrent.dll
 /home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/refint/koostorrent.dll
 /home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/koostorrent.pdb
 /home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/koostorrent.genruntimeconfig.cache
 /home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/ref/koostorrent.dll
-/home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/koostorrent.sourcelink.json
