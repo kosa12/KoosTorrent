@@ -12,3 +12,4 @@
 /home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/koostorrent.pdb
 /home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/koostorrent.genruntimeconfig.cache
 /home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/ref/koostorrent.dll
+/home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/koostorrent.sourcelink.json

@@ -9,7 +9,7 @@ var (command, param) = args.Length switch {
 if (command == "decode") {
 
   var encodedValue = param;
-  Console.WriteLine(JsonSerializer.Serialize(Bencode.Decode(encodedValue)));
+  Console.WriteLine(JsonSerializer.Serialize(Bencode.Decode(ref encodedValue)));
 } else {
   throw new InvalidOperationException($"Invalid command: {command}");
 }
