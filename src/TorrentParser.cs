@@ -6,9 +6,10 @@ using System.Text;
 
 public class Info
 {
+    private const string Red = "\x1b[31m";
+    private const string Green = "\x1b[32m";
+    private const string Reset = "\x1b[0m";
 
-    private const string Red = "\x1b[32m";
-    private const string Reset = "\x1b[35m";
     public static void InfoCommand(string param)
     {
         var filePath = param;
@@ -24,6 +25,12 @@ public class Info
                 return;
             }
 
+            Console.WriteLine("Decoded dictionary:");
+            foreach (var kvp in decoded)
+            {
+                Console.WriteLine($"{kvp.Key}: {kvp.Value}");
+            }
+
             if (decoded.TryGetValue("announce", out var announceObj) &&
                 decoded.TryGetValue("info", out var infoObj))
             {
@@ -32,27 +39,46 @@ public class Info
 
                 if (infoDict != null)
                 {
-                    if (infoDict.TryGetValue("length", out var lengthObj))
+                    if (infoDict.TryGetValue("length", out var lengthObj) &&
+                        infoDict.TryGetValue("piece length", out var pieceLengthObj) &&
+                        infoDict.TryGetValue("pieces", out var piecesObj))
                     {
-                        if (lengthObj is long length)
+                        if (lengthObj is long length && pieceLengthObj is long pieceLength)
                         {
-                            Console.WriteLine($"{Red}Tracker URL:{Reset} {announce}");
-                            Console.WriteLine($"{Red}Length:{Reset} {length}");
+                            byte[] piecesBytes;
 
-                            byte[] bencodedInfo = Bencode.Encode(infoDict);
+                            if (piecesObj is byte[] piecesArray)
+                            {
+                                piecesBytes = piecesArray;
+                            }
+                            else if (piecesObj is string piecesString)
+                            {
+                                piecesBytes = Encoding.ASCII.GetBytes(piecesString);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Error: 'pieces' key is not of the expected type.");
+                                return;
+                            }
 
-                            string infoHash = ComputeSha1Hash(bencodedInfo);
+                            string piecesHexString = BitConverter.ToString(piecesBytes).Replace("-", "").ToLower();
 
-                            Console.WriteLine($"{Red}Info Hash:{Reset} {infoHash}");
+                            Console.WriteLine($"{Red}Tracker URL:{Reset} {Green}{announce}{Reset}");
+                            Console.WriteLine($"{Red}Length:{Reset} {Green}{length}{Reset}");
+                            Console.WriteLine($"{Red}Info Hash:{Reset} {Green}{ComputeSha1Hash(Bencode.Encode(infoDict))}{Reset}");
+                            Console.WriteLine($"{Red}Piece Length:{Reset} {Green}{pieceLength}{Reset}");
+                            Console.WriteLine($"{Red}Piece Hashes:{Reset}");
+
+                            PrintPieceHashes(piecesHexString);
                         }
                         else
                         {
-                            Console.WriteLine("Error: 'length' key is not of type long.");
+                            Console.WriteLine("Error: One or more keys are not of the expected type.");
                         }
                     }
                     else
                     {
-                        Console.WriteLine("Error: 'length' key not found in 'info' dictionary.");
+                        Console.WriteLine("Error: One or more required keys not found in 'info' dictionary.");
                     }
                 }
                 else
@@ -71,9 +97,22 @@ public class Info
         }
     }
 
-    private static byte[] BencodeEncode(Dictionary<string, object> dict)
+    private static void PrintPieceHashes(string piecesHexString)
     {
-        return Bencode.Encode(dict);
+        int hashLength = 40;
+        for (int i = 0; i < piecesHexString.Length; i += hashLength)
+        {
+            if (i + hashLength <= piecesHexString.Length)
+            {
+                string hashHex = piecesHexString.Substring(i, hashLength);
+                Console.WriteLine($"{Green}{hashHex.ToUpper()}{Reset}");
+            }
+            else
+            {
+                Console.WriteLine("Error: Incomplete piece hash detected.");
+                break;
+            }
+        }
     }
 
     private static string ComputeSha1Hash(byte[] data)
@@ -84,4 +123,5 @@ public class Info
             return BitConverter.ToString(hash).Replace("-", "").ToLower();
         }
     }
+
 }

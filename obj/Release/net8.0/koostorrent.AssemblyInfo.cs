@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("koostorrent")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6c95501ba6ef6aac16f7344da8e3b5af8e68fafb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+daf02a85a2be773caa1d7e09142ab4dce0cd1ff2")]
 [assembly: System.Reflection.AssemblyProductAttribute("koostorrent")]
 [assembly: System.Reflection.AssemblyTitleAttribute("koostorrent")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
