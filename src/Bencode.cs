@@ -43,6 +43,7 @@ public class Bencode
                 var listBuilder = new StringBuilder("l");
                 foreach (var item in arr)
                 {
+                    
                     listBuilder.Append(Encoding.ASCII.GetString(Encode(item)));
                 }
                 listBuilder.Append("e");

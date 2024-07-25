@@ -6,6 +6,9 @@ using System.Text;
 
 public class Info
 {
+
+    private const string Red = "\x1b[32m";
+    private const string Reset = "\x1b[35m";
     public static void InfoCommand(string param)
     {
         var filePath = param;
@@ -33,14 +36,14 @@ public class Info
                     {
                         if (lengthObj is long length)
                         {
-                            Console.WriteLine($"Tracker URL: {announce}");
-                            Console.WriteLine($"Length: {length}");
+                            Console.WriteLine($"{Red}Tracker URL:{Reset} {announce}");
+                            Console.WriteLine($"{Red}Length:{Reset} {length}");
 
                             byte[] bencodedInfo = Bencode.Encode(infoDict);
 
                             string infoHash = ComputeSha1Hash(bencodedInfo);
 
-                            Console.WriteLine($"Info Hash: {infoHash}");
+                            Console.WriteLine($"{Red}Info Hash:{Reset} {infoHash}");
                         }
                         else
                         {
