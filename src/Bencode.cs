@@ -30,37 +30,41 @@ public class Bencode
     }
 
     public static byte[] Encode(object input)
+{
+    switch (input)
     {
-        switch (input)
-        {
-            case int i:
-                return Encoding.ASCII.GetBytes($"i{i}e");
-            case long l:
-                return Encoding.ASCII.GetBytes($"i{l}e");
-            case string s:
-                return Encoding.ASCII.GetBytes($"{s.Length}:{s}");
-            case object[] arr:
-                var listBuilder = new StringBuilder("l");
-                foreach (var item in arr)
-                {
-                    
-                    listBuilder.Append(Encoding.ASCII.GetString(Encode(item)));
-                }
-                listBuilder.Append("e");
-                return Encoding.ASCII.GetBytes(listBuilder.ToString());
-            case Dictionary<string, object> dict:
-                var dictBuilder = new StringBuilder("d");
-                foreach (var kvp in dict.OrderBy(kvp => kvp.Key))
-                {
-                    dictBuilder.Append(Encoding.ASCII.GetString(Encode(kvp.Key)));
-                    dictBuilder.Append(Encoding.ASCII.GetString(Encode(kvp.Value)));
-                }
-                dictBuilder.Append("e");
-                return Encoding.ASCII.GetBytes(dictBuilder.ToString());
-            default:
-                throw new InvalidOperationException($"Unknown type: {input.GetType()}");
-        }
+        case int i:
+            return Encoding.ASCII.GetBytes($"i{i}e");
+        case long l:
+            return Encoding.ASCII.GetBytes($"i{l}e");
+        case string s:
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append(s.Length);
+            stringBuilder.Append(':');
+            stringBuilder.Append(s);
+            return Encoding.ASCII.GetBytes(stringBuilder.ToString());
+        case object[] arr:
+            var listBuilder = new StringBuilder("l");
+            foreach (var item in arr)
+            {
+                listBuilder.Append(Encoding.ASCII.GetString(Encode(item)));
+            }
+            listBuilder.Append("e");
+            return Encoding.ASCII.GetBytes(listBuilder.ToString());
+        case Dictionary<string, object> dict:
+            var dictBuilder = new StringBuilder("d");
+            foreach (var kvp in dict.OrderBy(kvp => kvp.Key))
+            {
+                dictBuilder.Append(Encoding.ASCII.GetString(Encode(kvp.Key)));
+                dictBuilder.Append(Encoding.ASCII.GetString(Encode(kvp.Value)));
+            }
+            dictBuilder.Append("e");
+            return Encoding.ASCII.GetBytes(dictBuilder.ToString());
+        default:
+            throw new InvalidOperationException($"Unknown type: {input.GetType()}");
     }
+}
+
 
     private static string DecodeString(ref byte[] input)
     {
