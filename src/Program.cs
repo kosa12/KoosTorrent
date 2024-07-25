@@ -1,15 +1,26 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text.Json;
 
-var (command, param) = args.Length switch {
-  0 => throw new InvalidOperationException("Usage: tor.sh <command> <param>"),
-  1 => throw new InvalidOperationException("Usage: tor.sh <command> <param>"),
-  _ => (args[0], args[1])
-};
+class Program {
+    static void Main(string[] args) {
+        if (args.Length != 2) {
+            Console.WriteLine("Usage: tor.sh <command> <param>");
+            return;
+        }
 
-if (command == "decode") {
+        var (command, param) = (args[0], args[1]);
 
-  var encodedValue = param;
-  Console.WriteLine(JsonSerializer.Serialize(Bencode.Decode(ref encodedValue)));
-} else {
-  throw new InvalidOperationException($"Invalid command: {command}");
+        if (command == "decode") {
+            var encodedValue = param;
+            byte[] byteArray = System.Text.Encoding.ASCII.GetBytes(encodedValue);
+            var decodedValue = Bencode.Decode(ref byteArray);
+            Console.WriteLine(JsonSerializer.Serialize(decodedValue));
+        } else if (command == "info") {
+            Info.InfoCommand(param);
+        } else {
+            Console.WriteLine($"Invalid command: {command}");
+        }
+    }
 }
