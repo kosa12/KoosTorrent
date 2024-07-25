@@ -1,0 +1,14 @@
+/home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/codecrafters-bittorrent.GeneratedMSBuildEditorConfig.editorconfig
+/home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/codecrafters-bittorrent.AssemblyInfoInputs.cache
+/home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/codecrafters-bittorrent.AssemblyInfo.cs
+/home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/codecrafters-bittorrent.csproj.CoreCompileInputs.cache
+/home/kosa/Desktop/KoosTorrent/bin/Release/net8.0/codecrafters-bittorrent
+/home/kosa/Desktop/KoosTorrent/bin/Release/net8.0/codecrafters-bittorrent.deps.json
+/home/kosa/Desktop/KoosTorrent/bin/Release/net8.0/codecrafters-bittorrent.runtimeconfig.json
+/home/kosa/Desktop/KoosTorrent/bin/Release/net8.0/codecrafters-bittorrent.dll
+/home/kosa/Desktop/KoosTorrent/bin/Release/net8.0/codecrafters-bittorrent.pdb
+/home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/codecrafters-bittorrent.dll
+/home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/refint/codecrafters-bittorrent.dll
+/home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/codecrafters-bittorrent.pdb
+/home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/codecrafters-bittorrent.genruntimeconfig.cache
+/home/kosa/Desktop/KoosTorrent/obj/Release/net8.0/ref/codecrafters-bittorrent.dll

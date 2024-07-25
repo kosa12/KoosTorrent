@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Pw+2270/qRNWSHxmRQVLwwkD2MMwI6xRAEzrHtlB4BpHrLi9vq7qWAj8bFiq4m8zoplGpS+s5KmNoXMIOTBvNw==",
+  "success": true,
+  "projectFilePath": "/home/kosa/Desktop/KoosTorrent/koostorrent.csproj",
+  "expectedPackageFiles": [
+    "/home/kosa/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.6/microsoft.aspnetcore.app.ref.8.0.6.nupkg.sha512"
+  ],
+  "logs": []
+}
